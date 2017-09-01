@@ -1,0 +1,65 @@
+[
+  {
+    "id": 0,
+    "name": "Coca-Cola",
+    "image": "require('./img/stock.png')",
+    "question": "Welk speciaal ingrediënt zat er in Coca-Cola?",
+    "answer1": "Cocaine",
+    "answer2": "Bronatura suiker",
+    "answer3": "Hoesselijn",
+    "answer4": "Begroette fijnstof",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+
+  {
+    "id": 1,
+    "name": "Tetris",
+    "image": "require('./img/stock.png')",
+    "question": "In hoeveel dagen is Tetris gemaakt",
+    "answer1": "8",
+    "answer2": "11",
+    "answer3": "14",
+    "answer4": "23",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+
+  {
+    "id": 2,
+    "name": "Sahara",
+    "image": "require('./img/stock.png')",
+    "question": "Hoeveel procent uit de sahara bestaat uit zand?",
+    "answer1": "10%",
+    "answer2": "20%",
+    "answer3": "30%",
+    "answer4": "40%",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+
+  {
+    "id": 3,
+    "name": "Slakken",
+    "image": "require('./img/stock.png')",
+    "question": "Hoe lang kunnen slakken slapen",
+    "answer1": "6 maanden",
+    "answer2": "1 jaar",
+    "answer3": "2 jaar",
+    "answer4": "3 jaar",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+  {
+    "id": 4,
+    "name": "Spieren",
+    "image": "require('./img/stock.png')",
+    "question": "De sterkste spier in het menselijk lichaam is:",
+    "answer1": "Hart",
+    "answer2": "Bovenbeen",
+    "answer3": "Tong",
+    "answer4": "Bicep",
+    "answered": "",
+    "buttonAnswered": ""
+  }
+]

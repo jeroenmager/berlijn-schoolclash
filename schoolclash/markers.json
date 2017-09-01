@@ -1,0 +1,56 @@
+[
+  {
+    "id": 0,
+    "key": 0,
+    "color": "red",
+    "amount": 1,
+    "coordinate": {
+      "latitude": 52.570653,
+      "longitude": 6.63493
+    }
+  },
+
+  {
+    "id": 1,
+    "key": 1,
+    "color": "red",
+    "amount": 1,
+    "coordinate": {
+      "latitude": 52.57085979,
+      "longitude": 6.6280818
+    }
+  },
+
+  {
+    "id": 2,
+    "key": 2,
+    "color": "red",
+    "amount": 1,
+    "coordinate": {
+      "latitude": 52.569669,
+      "longitude": 6.633382
+    }
+  },
+
+  {
+    "id": 3,
+    "key": 3,
+    "color": "red",
+    "amount": 1,
+    "coordinate": {
+      "latitude": 52.570907,
+      "longitude": 6.630828
+    }
+  },
+
+  {
+    "id": 4,
+    "key": 4,
+    "color": "red",
+    "amount": 1,
+    "coordinate": {
+      "latitude": 52.572069,
+      "longitude": 6.626258
+    }
+  }
+]

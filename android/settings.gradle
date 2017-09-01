@@ -1,0 +1,10 @@
+rootProject.name = 'SchoolClash'
+include ':react-native-android-taskdescription'
+project(':react-native-android-taskdescription').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-android-taskdescription/android')
+include ':react-native-splash-screen'
+project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
+
+include ':app'
+
+include ':react-native-maps'
+project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')

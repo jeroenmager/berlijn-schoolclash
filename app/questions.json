@@ -1,0 +1,65 @@
+[
+  {
+    "id": 0,
+    "name": "first question",
+    "image": "require('./img/stock.png')",
+    "question": "Is this my first question?",
+    "answer1": "question 1: answer 1",
+    "answer2": "question 1: answer 2",
+    "answer3": "question 1: answer 3",
+    "answer4": "question 1: answer 4",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+
+  {
+    "id": 1,
+    "name": "second question",
+    "image": "require('./img/stock.png')",
+    "question": "Is this my second question?",
+    "answer1": "question 2: answer 1",
+    "answer2": "question 2: answer 2",
+    "answer3": "question 2: answer 3",
+    "answer4": "question 2: answer 4",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+
+  {
+    "id": 2,
+    "name": "third question",
+    "image": "require('./img/stock.png')",
+    "question": "Is this my third question?",
+    "answer1": "question 3: answer 1",
+    "answer2": "question 3: answer 2",
+    "answer3": "question 3: answer 3",
+    "answer4": "question 3: answer 4",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+
+  {
+    "id": 3,
+    "name": "fourth question",
+    "image": "require('./img/stock.png')",
+    "question": "Is this my fourth question?",
+    "answer1": "question 4: answer 1",
+    "answer2": "question 4: answer 2",
+    "answer3": "question 4: answer 3",
+    "answer4": "question 4: answer 4",
+    "answered": "",
+    "buttonAnswered": ""
+  },
+  {
+    "id": 4,
+    "name": "fifth question",
+    "image": "require('./img/stock.png')",
+    "question": "Is this my fifth question?",
+    "answer1": "question 5: answer 1",
+    "answer2": "question 5: answer 2",
+    "answer3": "question 5: answer 3",
+    "answer4": "question 5: answer 4",
+    "answered": "",
+    "buttonAnswered": ""
+  }
+]
