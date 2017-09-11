@@ -259,6 +259,7 @@ var CustomMap = React.createClass({
 
                 </Form>
 
+                <View style={styles.navButtonsForm}>
                     <TouchableHighlight style={styles.lastButton} onPress={() => {
                           this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
                         }}>
@@ -276,7 +277,7 @@ var CustomMap = React.createClass({
                     }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
                     </TouchableHighlight>
-
+                </View>
 
             </View>
           </Modal>
@@ -348,34 +349,38 @@ var styles = StyleSheet.create({        //Styling (Camelcase)
     fontSize: 17,
   },
 
+  navButtonsForm: {
+    flexDirection: 'row',
+    marginTop: 70,
+  },
+
   closeButton: {
     backgroundColor: '#2196F3',
     padding: 12,
-    width:75,
     elevation: 5,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderRadius: 5,
     marginTop: 15,
     marginBottom: 2,
+    marginRight: 15,
   },
 
   lastButton: {
     backgroundColor: '#2196F3',
     padding: 12,
-    width:75,
     elevation: 5,
     alignItems: 'center',
     borderRadius: 5,
     marginTop: 15,
     marginBottom: 2,
+      marginRight: 15,
   },
 
   nextButton: {
     backgroundColor: '#2196F3',
     padding: 12,
-    width:75,
     elevation: 5,
-    alignItems: 'center',
+    alignItems: 'flex-end',
     borderRadius: 5,
     marginTop: 15,
     marginBottom: 2,
