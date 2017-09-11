@@ -12,7 +12,7 @@ import {
     Image
 } from 'react-native';
 
-questions = fetch('http://83.162.251.15/schoolclash/questions.json')
+questions = fetch('http://cityclash.icthardenberg.nl/backend/questions.json')
   .then((response) => response.json())
   .then((responseJson) => {
     return questions = responseJson;
@@ -54,7 +54,7 @@ var Results = React.createClass({
 
     submit() {
         var http = new XMLHttpRequest();
-        var url = "http://83.162.251.15/schoolclash/backend.php";
+        var url = "http://cityclash.icthardenberg.nl/backend/backend.php";
         var params = JSON.stringify(questions);
         http.open("POST", url, true);
 
