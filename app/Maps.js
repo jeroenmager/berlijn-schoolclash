@@ -19,7 +19,7 @@ var {
   AsyncStorage
 } = ReactNative;                                    //Import components for this file.
 
-questions = fetch('http://83.162.251.15/schoolclash/questions.json')
+questions = fetch('http://cityclash.icthardenberg.nl/backend/questions.json')
   .then((response) => response.json())
   .then((responseJson) => {
     return questions = responseJson;
@@ -100,7 +100,7 @@ var CustomMap = React.createClass({
   },
 
   componentDidMount: function() {
-    fetch('http://83.162.251.15/schoolclash/markers.json')
+    fetch('http://cityclash.icthardenberg.nl/dev/app/data/markers_s.php?type=app')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({markers: responseJson}) ;
