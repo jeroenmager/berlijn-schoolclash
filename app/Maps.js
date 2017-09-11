@@ -100,11 +100,7 @@ var CustomMap = React.createClass({
   },
 
   componentDidMount: function() {
-<<<<<<< HEAD
     fetch('http://cityclash.icthardenberg.nl/dev/app/data/markers_s.php?type=app')
-=======
-    fetch('http://cityclash.icthardenberg.nl/backend/markers.json')
->>>>>>> be964885820111baff2188bc597c3057f822d261
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({markers: responseJson}) ;
