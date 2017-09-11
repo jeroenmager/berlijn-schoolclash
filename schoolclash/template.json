@@ -1,0 +1,27 @@
+{
+  "Location": [{
+    "idLocation": "",
+    "Lattitude": "",
+    "Longitude": "",
+    "Name": "",
+    "Desc": "",
+    "Active": ""
+  }],
+ 
+  "Question": [{
+    "idQuestion": "",
+    "Text": "",
+    "Photo": "",
+    "Video": "",
+    "Active": "",
+    "Location_idLocation": "",
+    "Type": ""
+  }],
+  "User": {
+    "idUser": "",
+    "Role": "",
+    "Name": "",
+    "Password": "",
+    "Event_idEvent": ""
+  }
+}
