@@ -1,5 +1,7 @@
 import pick from 'lodash/pick';
 import haversine from 'haversine';
+import Form from 'react-native-form';
+
 
 var React = require('react');
 var ReactNative = require('react-native');
@@ -11,6 +13,7 @@ var {
   Dimensions,
   TouchableOpacity,
   Modal,
+  TextInput,
   Button,
   TouchableHighlight,
   Image,
@@ -233,8 +236,7 @@ var CustomMap = React.createClass({
         </View>
 
 
-
-        <Modal
+              <Modal
             animationType={"slide"}                                                     //Animation modal is slide
             transparent={false}
             visible={this.state.modalVisible}                                           //Makes the modal visible
@@ -247,47 +249,34 @@ var CustomMap = React.createClass({
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
-                <View style={styles.buttonHolder}>
-                  <TouchableHighlight
-                    style={[styles.buttons, {backgroundColor: this.state.activeButton == "button1"? "#32cd32": "#2196F3"}]}     //button 1
-                    onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer1, "button1")}}                    //onPress button, save answer for button 1
-                  >
-                    <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer1: "Undefined"}</Text>
-                  </TouchableHighlight>
-                </View>
 
-                <View style={styles.buttonHolder}>
-                  <TouchableHighlight
-                    style={[styles.buttons, {backgroundColor: this.state.activeButton == "button2"? "#32cd32": "#2196F3"}]}     //button 2
-                    onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer2, "button2")}}                    //onPress button, save answer for button 2
-                  >
-                    <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer2: "Undefined"}</Text>
-                  </TouchableHighlight>
-                </View>
+                <Form ref="form">
+                    <View>
+                        <View>
+                            <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
+                        </View>
+                    </View>
 
-                <View style={styles.buttonHolder}>
-                  <TouchableHighlight
-                    style={[styles.buttons, {backgroundColor: this.state.activeButton == "button3"? "#32cd32": "#2196F3"}]}     //button 3
-                    onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer3, "button3")}}                    //onPress button, save answer for button 3
-                  >
-                    <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer3: "Undefined"}</Text>
-                  </TouchableHighlight>
-                </View>
+                </Form>
 
-                <View style={styles.buttonHolder}>
-                  <TouchableHighlight
-                    style={[styles.buttons, {backgroundColor: this.state.activeButton == "button4"? "#32cd32": "#2196F3"}]}     //button 4
-                    onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer4, "button4")}}                    //onPress button, save answer for button 4
-                  >
-                    <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer4: "Undefined"}</Text>
-                  </TouchableHighlight>
-                </View>
+                    <TouchableHighlight style={styles.lastButton} onPress={() => {
+                          this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
+                        }}>
+                        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Vorige</Text>
+                    </TouchableHighlight>
 
-                <TouchableHighlight style={styles.closeButton} onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible)                                    //onPress close button, close modal
-                }}>
-                <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Close</Text>
-                </TouchableHighlight>
+                    <TouchableHighlight style={styles.closeButton} onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);                                    //onPress close button, close modal
+                    }}>
+                    <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Sluiten</Text>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight style={styles.nextButton} onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
+                    }}>
+                        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
+                    </TouchableHighlight>
+
 
             </View>
           </Modal>
@@ -362,6 +351,29 @@ var styles = StyleSheet.create({        //Styling (Camelcase)
   closeButton: {
     backgroundColor: '#2196F3',
     padding: 12,
+    width:75,
+    elevation: 5,
+    alignItems: 'center',
+    borderRadius: 5,
+    marginTop: 15,
+    marginBottom: 2,
+  },
+
+  lastButton: {
+    backgroundColor: '#2196F3',
+    padding: 12,
+    width:75,
+    elevation: 5,
+    alignItems: 'center',
+    borderRadius: 5,
+    marginTop: 15,
+    marginBottom: 2,
+  },
+
+  nextButton: {
+    backgroundColor: '#2196F3',
+    padding: 12,
+    width:75,
     elevation: 5,
     alignItems: 'center',
     borderRadius: 5,
