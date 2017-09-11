@@ -13,7 +13,10 @@
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.43.2",
 		"react-native-android-taskdescription": "1.0.1",
+<<<<<<< HEAD
+=======
 		"react-native-form": "2.1.2",
+>>>>>>> be964885820111baff2188bc597c3057f822d261
 		"react-native-maps": "0.15.0",
 		"react-native-splash-screen": "2.1.0",
 		"rnpm": "1.9.0"
