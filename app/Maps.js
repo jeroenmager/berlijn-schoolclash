@@ -1,3 +1,4 @@
+import Camera from 'react-native-camera';
 import pick from 'lodash/pick';
 import haversine from 'haversine';
 import Form from 'react-native-form';
@@ -172,6 +173,16 @@ var CustomMap = React.createClass({
     return (haversine(prevLatLng, newLatLng) || 0)      //Uses Haversine formula to calculate previous position and new position (adds this to distance traveled)
   },
 
+    
+    
+    
+    
+        takePicture() {
+   this.camera.capture()
+     .then((data) => console.log(data))
+     .catch(err => console.error(err));
+ },
+    
 
   onCheckMarker(region) {
     for(i = 0; i < this.state.markers.length; i++) {                                                //Iteration
@@ -245,7 +256,15 @@ var CustomMap = React.createClass({
             <View style={styles.qContainer}>
                 <Text style={styles.title}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].name: "Undefined"}</Text>
 
-                <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
+              
+                <Camera
+           ref={(cam) => {
+             this.camera = cam;
+           }}
+           style={styles.preview}
+           aspect={Camera.constants.Aspect.fill}>
+           <Text style={styles.capture} onPress={this.takePicture}>Maak foto</Text>
+       </Camera>
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
@@ -385,6 +404,19 @@ var styles = StyleSheet.create({        //Styling (Camelcase)
     marginTop: 15,
     marginBottom: 2,
   },
+preview: {
+   height: (Dimensions.get('window').height / 3.5), 
+   width: Dimensions.get('window').width
+ },
+capture: {
+    textAlign: 'center',
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
+  }
 });
 
 module.exports = CustomMap;     //Export module to use this module in other files
