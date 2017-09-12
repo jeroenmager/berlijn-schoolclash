@@ -2,6 +2,7 @@ import Camera from 'react-native-camera';
 import pick from 'lodash/pick';
 import haversine from 'haversine';
 import Form from 'react-native-form';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 var React = require('react');
@@ -256,6 +257,19 @@ var CustomMap = React.createClass({
             <View style={styles.qContainer}>
                 <Text style={styles.title}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].name: "Undefined"}</Text>
 
+<<<<<<< HEAD
+              
+                {/*<Camera*/}
+           {/*ref={(cam) => {*/}
+             {/*this.camera = cam;*/}
+           {/*}}*/}
+           {/*style={styles.preview}*/}
+           {/*aspect={Camera.constants.Aspect.fill}>*/}
+           {/*<Text style={styles.capture} onPress={this.takePicture}>Maak foto</Text>*/}
+       {/*</Camera>*/}
+
+                <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
+=======
                 <Button
                     onPress={() => {
                             this.navigate('CameraPage')
@@ -264,14 +278,17 @@ var CustomMap = React.createClass({
                     color="#7A7A7A"
                     accessibilityLabel="Camera"
                 />
+>>>>>>> eb6afab6fe132da594b053e9bcf53b91a03fdad3
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
-                
+
                     <Form ref="form">
                         <View>
-                            <View>
-                                <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
-                            </View>
+                            <KeyboardAwareScrollView>
+                                <View>
+                                    <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
+                                </View>
+                            </KeyboardAwareScrollView>
                         </View>
 
                     </Form>
@@ -403,7 +420,7 @@ var styles = StyleSheet.create({        //Styling (Camelcase)
     marginBottom: 2,
   },
 preview: {
-   height: (Dimensions.get('window').height / 3.5), 
+   height: (Dimensions.get('window').height / 3.5),
    width: Dimensions.get('window').width
  },
 capture: {
