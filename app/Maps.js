@@ -268,7 +268,16 @@ var CustomMap = React.createClass({
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
+                for(i=0; i=this.question; i++){
+                  if(this.question[i].type=='open'){
 
+                  }
+                  if(this.question[i].type=='multi'){
+
+                  }
+                  if(this.question[i].type=='photo'){
+                    
+                  }
                 <Form ref="form">
                     <View>
                         <View>
@@ -277,6 +286,7 @@ var CustomMap = React.createClass({
                     </View>
 
                 </Form>
+                } 
 
                 <View style={styles.navButtonsForm}>
                     <TouchableHighlight style={styles.lastButton} onPress={() => {
