@@ -248,26 +248,15 @@ var CustomMap = React.createClass({
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
-
-                for(i=0; i=this.question; i++){
-                  if(this.question[i].type=='open'){
-
-                  }
-                  if(this.question[i].type=='multi'){
-
-                  }
-                  if(this.question[i].type=='photo'){
-                    
-                  }
-                <Form ref="form">
-                    <View>
+                
+                    <Form ref="form">
                         <View>
-                            <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
+                            <View>
+                                <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
+                            </View>
                         </View>
-                    </View>
 
-                </Form>
-                } 
+                    </Form>
 
                 <View style={styles.navButtonsForm}>
                     <TouchableHighlight style={styles.lastButton} onPress={() => {
