@@ -256,15 +256,14 @@ var CustomMap = React.createClass({
             <View style={styles.qContainer}>
                 <Text style={styles.title}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].name: "Undefined"}</Text>
 
-              
-                <Camera
-           ref={(cam) => {
-             this.camera = cam;
-           }}
-           style={styles.preview}
-           aspect={Camera.constants.Aspect.fill}>
-           <Text style={styles.capture} onPress={this.takePicture}>Maak foto</Text>
-       </Camera>
+                <Button
+                    onPress={() => {
+                            this.navigate('CameraPage')
+                    }}
+                    title="Camera"
+                    color="#7A7A7A"
+                    accessibilityLabel="Camera"
+                />
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
                 
