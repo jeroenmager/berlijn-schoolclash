@@ -13,15 +13,7 @@ import Camera from 'react-native-camera';
 class CameraPage extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Button
-                    onPress={() => {
-                        this.navigate('Maps.js')
-                    }}
-                    title="Back"
-                    color="#7A7A7A"
-                    accessibilityLabel="Camera"
-                />
+            <View style={styles.container}> 
                 <Camera
                     ref={(cam) => {
                         this.camera = cam;
