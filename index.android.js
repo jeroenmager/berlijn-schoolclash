@@ -12,6 +12,7 @@ var HomeScreen = require('./app/HomeScreen')
 var Maps = require('./app/Maps')
 var Results = require('./app/Results')
 var Settings = require('./app/Settings')        //Require other files in this file.
+var CameraPage = require('./app/CameraPage')        //Require other files in this file.
 
 class NavigateFiles extends Component {
 
@@ -42,7 +43,9 @@ class NavigateFiles extends Component {
             case 'Results':
                 return(<Results navigator={navigator} title='Results' data={route.data} />);
             case 'Settings':
-                return(<Settings navigator={navigator} title='Settings' data={route.data} />);      //Navigate to the file/page where the route.id is the same as the case
+                return(<Settings navigator={navigator} title='Settings' data={route.data} />);
+            case 'CameraPage':
+                return(<CameraPage navigator={navigator} title='CameraPage' data={route.data} />);      //Navigate to the file/page where the route.id is the same as the case
         }
     }
 }
