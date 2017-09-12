@@ -13,7 +13,7 @@ import Camera from 'react-native-camera';
 class CameraPage extends Component {
     render() {
         return (
-            <View style={styles.container}> 
+            <View style={styles.container}>
                 <Camera
                     ref={(cam) => {
                         this.camera = cam;
