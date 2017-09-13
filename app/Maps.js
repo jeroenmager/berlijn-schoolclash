@@ -329,8 +329,8 @@ var CustomMap = React.createClass({
 
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
-
-                {this.answerType(this.state.activeQuestions.type)}
+                {console.log(this.state.activeQuestions[0])}
+                {this.answerType()}
 
 
                 <View style={styles.navButtonsForm}>
