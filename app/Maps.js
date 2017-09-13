@@ -82,7 +82,10 @@ var CustomMap = React.createClass({
   openQuestion(id) {
     var activeQuestion = [];
      for(var i = 0; i < questions.length; i++) {
-        if(questions[i].Location_idlocation == id) {
+     console.log(questions[i].Location_idLocation);
+     console.log(id);
+        if(questions[i].Location_idLocation == id) {
+        console.log("hit");
             activeQuestion.push(questions[i]);
         }
      }
@@ -321,14 +324,13 @@ var CustomMap = React.createClass({
           >
           <View style={styles.qContainer}>
             <KeyboardAwareScrollView>
-                <Text style={styles.title}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].name: "Undefined"}</Text>
+                <Text style={styles.title}>{this.state.activeQuestions[0] != null? this.state.activeQuestions[0].text: "Undefined"}</Text>
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
 
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
-                {this.answerType(questions[this.state.activeMarker])}
-                {console.log(this.state.activeQuestions)}
+                {this.answerType(this.state.activeQuestions.type)}
 
 
                 <View style={styles.navButtonsForm}>
