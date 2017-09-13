@@ -100,6 +100,9 @@ var CustomMap = React.createClass({
 
     navQuestions(direction){
         if(direction == "next"){
+        for(var i = 0; i < this.state.activeQuestions.length; i++) {
+            console.log(this.state.activeQuestions[i]);
+        }
             this.setState({locationActiveQuestion: (this.state.locationActiveQuestion + 1)})
         }else if(direction == "back"){
             this.setState({locationActiveQuestion: (this.state.locationActiveQuestion - 1)})
@@ -335,13 +338,13 @@ var CustomMap = React.createClass({
           >
           <View style={styles.qContainer}>
             <KeyboardAwareScrollView>
-                <Text style={styles.title}>{this.state.activeQuestions[this.locationActiveQuestion] != null? this.state.activeQuestions[0].text: "Undefined"}</Text>
+                <Text style={styles.title}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[this.state.locationActiveQuestion].text: "Undefined"}</Text>
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
 
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
                 {console.log(this.state.activeQuestions[0])}
-                {this.answerType()}
+                {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[0].type): "Undefined"}
 
 
                 <View style={styles.navButtonsForm}>
@@ -359,7 +362,6 @@ var CustomMap = React.createClass({
 
                     <TouchableHighlight style={styles.nextButton} onPress={() => {
                       this.navQuestions("next");                                    //onPress next button, navigate to next question
-                      alert(this.locationActiveQuestion);
                     }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
                     </TouchableHighlight>
