@@ -104,6 +104,74 @@ var CustomMap = React.createClass({
     setTimeout(() => {this.setModalVisible(!this.state.modalVisible)}, 100);
   },
 
+  answerType: function(type) {
+    if(type == "open") {
+        return(
+            <Form ref="form">
+                <View>
+                        <View>
+                            <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
+                        </View>
+                </View>
+
+            </Form>
+        );
+    } else if(type == "closed") {
+        return(
+                <View>
+             <View style={styles.buttonHolder}>
+              <TouchableHighlight
+                style={[styles.buttons, {backgroundColor: this.state.activeButton == "button1"? "#32cd32": "#2196F3"}]}     //button 1
+                onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer1, "button1")}}                    //onPress button, save answer for button 1
+              >
+                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer1: "Undefined"}</Text>
+              </TouchableHighlight>
+            </View>
+
+            <View style={styles.buttonHolder}>
+              <TouchableHighlight
+                style={[styles.buttons, {backgroundColor: this.state.activeButton == "button2"? "#32cd32": "#2196F3"}]}     //button 2
+                onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer2, "button2")}}                    //onPress button, save answer for button 2
+              >
+                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer2: "Undefined"}</Text>
+              </TouchableHighlight>
+            </View>
+
+            <View style={styles.buttonHolder}>
+              <TouchableHighlight
+                style={[styles.buttons, {backgroundColor: this.state.activeButton == "button3"? "#32cd32": "#2196F3"}]}     //button 3
+                onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer3, "button3")}}                    //onPress button, save answer for button 3
+              >
+                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer3: "Undefined"}</Text>
+              </TouchableHighlight>
+            </View>
+
+            <View style={styles.buttonHolder}>
+              <TouchableHighlight
+                style={[styles.buttons, {backgroundColor: this.state.activeButton == "button4"? "#32cd32": "#2196F3"}]}     //button 4
+                onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer4, "button4")}}                    //onPress button, save answer for button 4
+              >
+                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer4: "Undefined"}</Text>
+              </TouchableHighlight>
+            </View>
+            </View>
+        );
+    } else if(type == "photo") {
+        return(
+            <Button
+                onPress={() => {
+                        this.navigate('CameraPage')
+                }}
+                title="Camera"
+                color="#7A7A7A"
+                accessibilityLabel="Camera"
+            />
+        );
+    }
+
+
+  },
+
   componentDidMount: function() {
     fetch('http://cityclash.icthardenberg.nl/dev/app/data/markers_s.php?type=app')
       .then((response) => response.json())
@@ -174,16 +242,6 @@ var CustomMap = React.createClass({
     return (haversine(prevLatLng, newLatLng) || 0)      //Uses Haversine formula to calculate previous position and new position (adds this to distance traveled)
   },
 
-    
-    
-    
-    
-        takePicture() {
-   this.camera.capture()
-     .then((data) => console.log(data))
-     .catch(err => console.error(err));
- },
-    
 
   onCheckMarker(region) {
     for(i = 0; i < this.state.markers.length; i++) {                                                //Iteration
@@ -230,7 +288,7 @@ var CustomMap = React.createClass({
               >
               </MapView.Marker>
               ))}
-        <MapView.Polyline
+            <MapView.Polyline
             coordinates={this.state.routeCoordinates}
             strokeColor='#19B5FE'
             strokeWidth={7}     //Polyline is the line that follows the path you have walked.
@@ -254,40 +312,16 @@ var CustomMap = React.createClass({
             visible={this.state.modalVisible}                                           //Makes the modal visible
             onRequestClose={() => {this.setModalVisible(!this.state.modalVisible)}}     //When you press on close, modal closes
           >
-            <View style={styles.qContainer}>
+          <View style={styles.qContainer}>
+            <KeyboardAwareScrollView>
                 <Text style={styles.title}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].name: "Undefined"}</Text>
-              
-                {/*<Camera*/}
-           {/*ref={(cam) => {*/}
-             {/*this.camera = cam;*/}
-           {/*}}*/}
-           {/*style={styles.preview}*/}
-           {/*aspect={Camera.constants.Aspect.fill}>*/}
-           {/*<Text style={styles.capture} onPress={this.takePicture}>Maak foto</Text>*/}
-       {/*</Camera>*/}
-
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
-                <Button
-                    onPress={() => {
-                            this.navigate('CameraPage')
-                    }}
-                    title="Camera"
-                    color="#7A7A7A"
-                    accessibilityLabel="Camera"
-                />
+
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
-                    <Form ref="form">
-                        <View>
-                            <KeyboardAwareScrollView>
-                                <View>
-                                    <TextInput style={{width: 300}} type="TextInput" name="myTextInput" />
-                                </View>
-                            </KeyboardAwareScrollView>
-                        </View>
+                {this.answerType("photo")}
 
-                    </Form>
 
                 <View style={styles.navButtonsForm}>
                     <TouchableHighlight style={styles.lastButton} onPress={() => {
@@ -308,7 +342,7 @@ var CustomMap = React.createClass({
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
                     </TouchableHighlight>
                 </View>
-
+               </KeyboardAwareScrollView>
             </View>
           </Modal>
       </View>
