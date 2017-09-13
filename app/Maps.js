@@ -24,7 +24,7 @@ var {
   AsyncStorage
 } = ReactNative;                                    //Import components for this file.
 
-questions = fetch('http://cityclash.icthardenberg.nl/backend/questions.json')
+questions = fetch('http://cityclash.icthardenberg.nl/dev/app/data/questions.php?type=app')
   .then((response) => response.json())
   .then((responseJson) => {
     return questions = responseJson;
@@ -63,7 +63,8 @@ var CustomMap = React.createClass({
       routeCoordinates: [],
       distanceTravelled: 0,
       prevLatLng: {},
-      images: []
+      images: [],
+      activeQuestions: []
     };
   },
 
@@ -79,9 +80,15 @@ var CustomMap = React.createClass({
   },
 
   openQuestion(id) {
+    var activeQuestion = [];
+     for(var i = 0; i < questions.length; i++) {
+        if(questions[i].Location_idlocation == id) {
+            activeQuestion.push(questions[i]);
+        }
+     }
+     this.setState({activeQuestions: activeQuestion})
      this.setModalVisible(true);                                    //Modal is visible
      this.setState({activeButton: this.state.givenButton[id]});     //Active button with appurtenant id
-     this.setState({activeMarker: id})                              //Active marker with appurtenant id
      var icon = questions[0].image;                                 //Retrieves appurtenant image from json
      this.state.images[id] = icon;                                  //Icon is this.state.images[id]
   },
@@ -105,7 +112,7 @@ var CustomMap = React.createClass({
   },
 
   answerType: function(type) {
-    if(type == "open") {
+    if(type == "OpenQ") {
         return(
             <Form ref="form">
                 <View>
@@ -116,7 +123,7 @@ var CustomMap = React.createClass({
 
             </Form>
         );
-    } else if(type == "closed") {
+    } else if(type == "MultiQ") {
         return(
                 <View>
              <View style={styles.buttonHolder}>
@@ -156,7 +163,7 @@ var CustomMap = React.createClass({
             </View>
             </View>
         );
-    } else if(type == "photo") {
+    } else if(type == "PicQ") {
         return(
             <Button
                 onPress={() => {
@@ -249,7 +256,7 @@ var CustomMap = React.createClass({
 //          alert(haversine(latlngUser, this.state.markers[i].coordinate, {unit: 'meter'}));
           if(haversine(latlngUser, this.state.markers[i].coordinate, {unit: 'meter'}) <= 50) {      //Checks all markers within 50 meter
              if(this.state.markers[i].color != 'green') {                                           //Check if question already answered
-                this.openQuestion(i) && Vibration.vibrate();                                        //If question is NOT answered, open modal + vibrate
+                this.openQuestion(this.state.markers[i].id) && Vibration.vibrate();                                        //If question is NOT answered, open modal + vibrate
              }
           }
     }
@@ -320,7 +327,8 @@ var CustomMap = React.createClass({
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
-                {this.answerType("photo")}
+                {this.answerType(questions[this.state.activeMarker])}
+                {console.log(this.state.activeQuestions)}
 
 
                 <View style={styles.navButtonsForm}>
