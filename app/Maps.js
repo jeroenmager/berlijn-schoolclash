@@ -96,7 +96,16 @@ var CustomMap = React.createClass({
      this.state.images[id] = icon;                                  //Icon is this.state.images[id]
   },
 
-  saveAnswer(answer, button) {
+    navQuestions(direction){
+        if(direction == "next"){
+            this.setState({locationActiveQuestion: this.state.locationActiveQuestion++})
+        }else if(direction == "back"){
+            this.setState({locationActiveQuestion: this.state.locationActiveQuestion--})
+        }
+    },
+
+
+    saveAnswer(answer, button) {
     this.state.givenAnswers[this.state.activeMarker] = answer;      //Saves answer given on question
     this.state.givenButton[this.state.activeMarker] = button;       //Saves the button you pressed
     this.state.markers[this.state.activeMarker].color = 'green';    //Give the pressed button a green color
@@ -335,7 +344,7 @@ var CustomMap = React.createClass({
 
                 <View style={styles.navButtonsForm}>
                     <TouchableHighlight style={styles.lastButton} onPress={() => {
-                          this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
+                          this.navQuestions("back");                                   //onPress back button, navigate to last question
                         }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Vorige</Text>
                     </TouchableHighlight>
@@ -343,22 +352,24 @@ var CustomMap = React.createClass({
                     <TouchableHighlight style={styles.closeButton} onPress={() => {
                       this.setModalVisible(!this.state.modalVisible);                                    //onPress close button, close modal
                     }}>
-                    <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Sluiten</Text>
+                        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Sluiten</Text>
                     </TouchableHighlight>
 
                     <TouchableHighlight style={styles.nextButton} onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
+                      this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next question
                     }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
                     </TouchableHighlight>
                 </View>
-               </KeyboardAwareScrollView>
-            </View>
-          </Modal>
+            </KeyboardAwareScrollView>
+          </View>
+              </Modal>
       </View>
     );
   },
 });
+
+
 
 var styles = StyleSheet.create({        //Styling (Camelcase)
   container: {
