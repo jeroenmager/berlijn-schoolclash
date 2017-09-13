@@ -96,6 +96,15 @@ var CustomMap = React.createClass({
      this.state.images[id] = icon;                                  //Icon is this.state.images[id]
   },
 
+    navQuestions(direction){
+      if(direction == "next"){
+          this.setState({locationActiveQuestion: this.state.locationActiveQuestion++})
+      }else if(direction == "back"){
+          this.setState({locationActiveQuestion: this.state.locationActiveQuestion--})
+      }
+    },
+
+
   saveAnswer(answer, button) {
     this.state.givenAnswers[this.state.activeMarker] = answer;      //Saves answer given on question
     this.state.givenButton[this.state.activeMarker] = button;       //Saves the button you pressed
@@ -324,7 +333,7 @@ var CustomMap = React.createClass({
           >
           <View style={styles.qContainer}>
             <KeyboardAwareScrollView>
-                <Text style={styles.title}>{this.state.activeQuestions[0] != null? this.state.activeQuestions[0].text: "Undefined"}</Text>
+                <Text style={styles.title}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[0].text: "Undefined"}</Text>
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
 
 
@@ -335,7 +344,7 @@ var CustomMap = React.createClass({
 
                 <View style={styles.navButtonsForm}>
                     <TouchableHighlight style={styles.lastButton} onPress={() => {
-                          this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
+                          this.navQuestions("back");                                   //onPress back button, navigate to last question
                         }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Vorige</Text>
                     </TouchableHighlight>
@@ -347,7 +356,7 @@ var CustomMap = React.createClass({
                     </TouchableHighlight>
 
                     <TouchableHighlight style={styles.nextButton} onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next qeustion
+                      this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next question
                     }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
                     </TouchableHighlight>
