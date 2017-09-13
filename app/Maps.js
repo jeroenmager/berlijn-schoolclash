@@ -256,8 +256,6 @@ var CustomMap = React.createClass({
           >
             <View style={styles.qContainer}>
                 <Text style={styles.title}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].name: "Undefined"}</Text>
-
-<<<<<<< HEAD
               
                 {/*<Camera*/}
            {/*ref={(cam) => {*/}
@@ -269,7 +267,6 @@ var CustomMap = React.createClass({
        {/*</Camera>*/}
 
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
-=======
                 <Button
                     onPress={() => {
                             this.navigate('CameraPage')
@@ -278,7 +275,6 @@ var CustomMap = React.createClass({
                     color="#7A7A7A"
                     accessibilityLabel="Camera"
                 />
->>>>>>> eb6afab6fe132da594b053e9bcf53b91a03fdad3
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
 
