@@ -57,6 +57,7 @@ var CustomMap = React.createClass({
         longitudeDelta: LONGITUDE_DELTA
       },
 
+      locationActiveQuestion: 0,
       markers: [],
       givenAnswers: [],
       givenButton: [],
@@ -80,6 +81,7 @@ var CustomMap = React.createClass({
   },
 
   openQuestion(id) {
+    this.setState({locationActiveQuestion: 0});
     var activeQuestion = [];
      for(var i = 0; i < questions.length; i++) {
      console.log(questions[i].Location_idLocation);
@@ -98,9 +100,9 @@ var CustomMap = React.createClass({
 
     navQuestions(direction){
         if(direction == "next"){
-            this.setState({locationActiveQuestion: this.state.locationActiveQuestion++})
+            this.setState({locationActiveQuestion: (this.state.locationActiveQuestion + 1)})
         }else if(direction == "back"){
-            this.setState({locationActiveQuestion: this.state.locationActiveQuestion--})
+            this.setState({locationActiveQuestion: (this.state.locationActiveQuestion - 1)})
         }
     },
 
