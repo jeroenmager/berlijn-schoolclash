@@ -356,7 +356,7 @@ var CustomMap = React.createClass({
                     </TouchableHighlight>
 
                     <TouchableHighlight style={styles.nextButton} onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);                                    //onPress next button, navigate to next question
+                      this.navQuestions("next");                                    //onPress next button, navigate to next question
                     }}>
                         <Text style={{color: 'white', fontWeight: 'bold', fontSize: 15}}>Volgende</Text>
                     </TouchableHighlight>
