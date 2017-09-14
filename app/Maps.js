@@ -193,23 +193,14 @@ var CustomMap = React.createClass({
         );
     } else if(type == "PicQ") {
         return(
-            <TouchableOpacity
-                style={{
-       borderWidth:1,
-       borderColor:'rgba(0,0,0,0.2)',
-       alignItems:'center',
-       justifyContent:'center',
-       width:100,
-       height:100,
-       backgroundColor:'#2196F3',
-       borderRadius:100,
-     }}
-                onPress={() => {
-                        this.navigate('CameraPage')
-                }}
-            >
-            </TouchableOpacity>
-
+        <TouchableOpacity
+            style={styles.camButton}
+            onPress={() => {
+                this.navigate('CameraPage')
+            }}
+        >
+            <Image source={require('./img/photo.png')} style={{width: 100, height: 100}} />
+        </TouchableOpacity>
         );
     }
 
@@ -451,6 +442,17 @@ var styles = StyleSheet.create({        //Styling (Camelcase)
    margin: 15,
    marginTop: 5,
    marginBottom: 5,
+  },
+
+  camButton: {
+      borderWidth:1,
+      alignItems:'center',
+      justifyContent:'center',
+      elevation: 5,
+      width:100,
+      height:100,
+      backgroundColor:'#2196F3',
+      borderRadius:100,
   },
 
   buttonText: {
