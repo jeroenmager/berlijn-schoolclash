@@ -12,7 +12,7 @@ import {
     Image
 } from 'react-native';
 
-questions = fetch('http://cityclash.icthardenberg.nl/backend/questions.json')
+questions = fetch('http://cityclash.icthardenberg.nl/dev/app/data/questions.php?type=app')
   .then((response) => response.json())
   .then((responseJson) => {
     return questions = responseJson;
