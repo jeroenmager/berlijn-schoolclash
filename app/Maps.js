@@ -104,14 +104,16 @@ var CustomMap = React.createClass({
                 console.log(this.state.activeQuestions[i]);
             }
                 if(this.state.locationActiveQuestion < (this.state.activeQuestions.length - 1)) {
-                    this.setState({locationActiveQuestion: this.state.locationActiveQuestion + 1})
+                    this.setState({locationActiveQuestion: this.state.locationActiveQuestion + 1});
+                    this.answerType(this.state.activeQuestions[this.state.locationActiveQuestion].type);
                 }else{
                     alert("dit was de laatste vraag")
                 }
 
         }else if(direction == "back"){
             if(this.state.locationActiveQuestion > 0) {
-                this.setState({locationActiveQuestion: (this.state.locationActiveQuestion - 1)})
+                this.setState({locationActiveQuestion: (this.state.locationActiveQuestion - 1)});
+                this.answerType(this.state.activeQuestions[this.state.locationActiveQuestion].type);
             }else{
                 alert("dit is de eerste vraag")
             }
@@ -157,7 +159,7 @@ var CustomMap = React.createClass({
                 style={[styles.buttons, {backgroundColor: this.state.activeButton == "button1"? "#32cd32": "#2196F3"}]}     //button 1
                 onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer1, "button1")}}                    //onPress button, save answer for button 1
               >
-                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer1: "Undefined"}</Text>
+                <Text style={styles.buttonText}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[this.state.locationActiveQuestion].answer1: "Undefined"}</Text>
               </TouchableHighlight>
             </View>
 
@@ -166,7 +168,7 @@ var CustomMap = React.createClass({
                 style={[styles.buttons, {backgroundColor: this.state.activeButton == "button2"? "#32cd32": "#2196F3"}]}     //button 2
                 onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer2, "button2")}}                    //onPress button, save answer for button 2
               >
-                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer2: "Undefined"}</Text>
+                <Text style={styles.buttonText}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[this.state.locationActiveQuestion].answer2: "Undefined"}</Text>
               </TouchableHighlight>
             </View>
 
@@ -175,7 +177,7 @@ var CustomMap = React.createClass({
                 style={[styles.buttons, {backgroundColor: this.state.activeButton == "button3"? "#32cd32": "#2196F3"}]}     //button 3
                 onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer3, "button3")}}                    //onPress button, save answer for button 3
               >
-                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer3: "Undefined"}</Text>
+                <Text style={styles.buttonText}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[this.state.locationActiveQuestion].answer3: "Undefined"}</Text>
               </TouchableHighlight>
             </View>
 
@@ -184,7 +186,7 @@ var CustomMap = React.createClass({
                 style={[styles.buttons, {backgroundColor: this.state.activeButton == "button4"? "#32cd32": "#2196F3"}]}     //button 4
                 onPress={() => {this.saveAnswer(questions[this.state.activeMarker].answer4, "button4")}}                    //onPress button, save answer for button 4
               >
-                <Text style={styles.buttonText}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].answer4: "Undefined"}</Text>
+                <Text style={styles.buttonText}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[this.state.locationActiveQuestion].answer4: "Undefined"}</Text>
               </TouchableHighlight>
             </View>
             </View>
@@ -353,7 +355,7 @@ var CustomMap = React.createClass({
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
                 {console.log(this.state.activeQuestions[0])}
-                {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[0].type): <Text>"Undefined"</Text>}
+                {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[this.state.locationActiveQuestion].type): <Text>Undefined</Text>}
 
 
                 <View style={styles.navButtonsForm}>
