@@ -15,6 +15,7 @@
     "react-native-android-taskdescription": "1.0.1",
     "react-native-camera": "^0.10.0",
     "react-native-form": "2.1.2",
+    "react-native-keyboard-aware-scroll-view": "^0.3.0",
     "react-native-maps": "0.15.0",
     "react-native-splash-screen": "2.1.0",
     "rnpm": "1.9.0"

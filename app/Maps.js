@@ -100,12 +100,21 @@ var CustomMap = React.createClass({
 
     navQuestions(direction){
         if(direction == "next"){
-        for(var i = 0; i < this.state.activeQuestions.length; i++) {
-            console.log(this.state.activeQuestions[i]);
-        }
-            this.setState({locationActiveQuestion: (this.state.locationActiveQuestion + 1)})
+            for(var i = 0; i < this.state.activeQuestions.length; i++) {
+                console.log(this.state.activeQuestions[i]);
+            }
+                if(this.state.locationActiveQuestion < (this.state.activeQuestions.length - 1)) {
+                    this.setState({locationActiveQuestion: this.state.locationActiveQuestion + 1})
+                }else{
+                    alert("dit was de laatste vraag")
+                }
+
         }else if(direction == "back"){
-            this.setState({locationActiveQuestion: (this.state.locationActiveQuestion - 1)})
+            if(this.state.locationActiveQuestion > 0) {
+                this.setState({locationActiveQuestion: (this.state.locationActiveQuestion - 1)})
+            }else{
+                alert("dit is de eerste vraag")
+            }
         }
     },
 
@@ -344,7 +353,7 @@ var CustomMap = React.createClass({
 
                 <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
                 {console.log(this.state.activeQuestions[0])}
-                {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[0].type): "Undefined"}
+                {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[0].type): <Text>"Undefined"</Text>}
 
 
                 <View style={styles.navButtonsForm}>
