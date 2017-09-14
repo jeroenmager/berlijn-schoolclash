@@ -193,14 +193,23 @@ var CustomMap = React.createClass({
         );
     } else if(type == "PicQ") {
         return(
-            <Button
+            <TouchableOpacity
+                style={{
+       borderWidth:1,
+       borderColor:'rgba(0,0,0,0.2)',
+       alignItems:'center',
+       justifyContent:'center',
+       width:100,
+       height:100,
+       backgroundColor:'#2196F3',
+       borderRadius:100,
+     }}
                 onPress={() => {
                         this.navigate('CameraPage')
                 }}
-                title="Camera"
-                color="#7A7A7A"
-                accessibilityLabel="Camera"
-            />
+            >
+            </TouchableOpacity>
+
         );
     }
 
@@ -353,7 +362,7 @@ var CustomMap = React.createClass({
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
 
 
-                <Text style={styles.question}>{questions[this.state.activeMarker] != null? questions[this.state.activeMarker].question: "Undefined"}</Text>
+                <Text style={styles.question}>{questions[this.state.locationActiveQuestion] != null? questions[this.state.locationActiveQuestion].text: "Undefined"}</Text>
                 {console.log(this.state.activeQuestions[0])}
                 {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[this.state.locationActiveQuestion].type): <Text>Undefined</Text>}
 
