@@ -193,6 +193,7 @@ var CustomMap = React.createClass({
         );
     } else if(type == "PicQ") {
         return(
+            <View style={styles.buttonHolder}>
         <TouchableOpacity
             style={styles.camButton}
             onPress={() => {
@@ -201,6 +202,7 @@ var CustomMap = React.createClass({
         >
             <Image source={require('./img/photo.png')} style={{width: 100, height: 100}} />
         </TouchableOpacity>
+            </View>
         );
     }
 
@@ -445,14 +447,14 @@ var styles = StyleSheet.create({        //Styling (Camelcase)
   },
 
   camButton: {
-      borderWidth:1,
-      alignItems:'center',
-      justifyContent:'center',
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 12,
       elevation: 5,
-      width:100,
-      height:100,
+      alignItems: 'center',
+      borderRadius: 5,
       backgroundColor:'#2196F3',
-      borderRadius:100,
   },
 
   buttonText: {
