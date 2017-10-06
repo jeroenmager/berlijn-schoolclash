@@ -39,6 +39,15 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: '600',
         fontSize: 17,
+    },
+    save: {
+        position: 'absolute',
+        left: 20,
+        top: 20,
+        backgroundColor: 'transparent',
+        color: '#FFF',
+        fontWeight: '600',
+        fontSize: 17,
     }
 });
 
@@ -68,7 +77,8 @@ class CameraPage extends Component {
                 }}
                 style={styles.preview}
                 aspect={Camera.constants.Aspect.fill}
-                captureTarget={Camera.constants.CaptureTarget.disk}
+                captureMode={Camera.constants.CaptureMode.still}
+                captureTarget={Camera.constants.CaptureTarget.cameraRoll}
             >
                 <TouchableHighlight
                     style={styles.capture}
@@ -88,6 +98,11 @@ class CameraPage extends Component {
                     source={{ uri: this.state.path }}
                     style={styles.preview}
                 />
+                <Text
+                    style={styles.save}
+                    onPress={() => this.setState({ path: null })}
+                >Save
+                </Text>
                 <Text
                     style={styles.cancel}
                     onPress={() => this.setState({ path: null })}
