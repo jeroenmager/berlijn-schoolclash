@@ -1,5 +1,6 @@
 import SplashScreen from 'react-native-splash-screen'
 import TaskDescriptionAndroid from 'react-native-android-taskdescription'
+import Form from 'react-native-form';
 import React, { Component } from 'react';
 import {
     View,
@@ -15,6 +16,7 @@ import {
     Vibration,
     TouchableHighlight,
     ToolbarAndroid,
+    TextInput
 } from 'react-native';       //Import components for this file.
 
 var HomeScreen = React.createClass({
@@ -22,6 +24,9 @@ var HomeScreen = React.createClass({
     getInitialState() {
         return {
             isConnected: null,      //Create state isConnected with value null
+            disabled: true,
+            username: '',
+            password: '',
         };
     },
 
@@ -43,17 +48,30 @@ var HomeScreen = React.createClass({
         );
     },
 
+     updatePassword(text) {
+          this.setState({password: text});
+          this.checkDisabled();
+     },
+
+      updateUsername(text) {
+          this.setState({username: text});
+          this.checkDisabled();
+      },
+
+      checkDisabled() {
+          if(this.state.username != '' && this.state.password != '') {
+              this.setState({ disabled: false });
+          } else {
+              this.setState({ disabled: true });
+          }
+      },
+
     _handleConnectivityChange: function(isConnected) {
         this.setState({
             isConnected,        //If connection changes from true to false (or false to true) update the state
         });
     },
 
-    navigate(id) {
-        this.props.navigator.replace({
-            id,     //Replaces the page with page given
-        });
-    },
 
     navigateSettings(id) {
         this.props.navigator.push({
@@ -89,6 +107,36 @@ var HomeScreen = React.createClass({
     },
 
     render: function() {
+
+        function submit(values, connected, navigator) {
+          if(connected) {
+              values['action'] = 'login';
+              console.log(values);
+              var http = new XMLHttpRequest();
+              var url = "http://cityclash.icthardenberg.nl/backend/login.php";
+              var params = JSON.stringify(values);
+              http.open("POST", url, true);
+              //Send the proper header information along with the request
+              http.setRequestHeader("Content-type", "application/json");
+              http.onreadystatechange = function() {//Call a function when the state changes.
+                  if(http.readyState == 4 && http.status == 200) {
+                      var answer = http.responseText.split(",");
+                      if(answer[12] == "true") {
+                        var id = "Maps";
+                        navigator.replace({id,});
+                      } else if(answer[12] == "false") {
+                       alert("foutieve gebruikersnaam/wachtwoord");
+                      } else {
+                        alert(http.responseText);
+                      }
+                  }
+              }
+              http.send(params);
+          } else {
+            Alert.alert('No internet!',
+                    'Please check your connection');
+          }
+        }
         return(
             <View style={styles.container}>
                     <TouchableHighlight style={styles.locationSettings} onPress={() => { this.navigateSettings('Settings') }}>
@@ -104,7 +152,7 @@ var HomeScreen = React.createClass({
                 />
                 <View>
                     <Image
-                        style={{width: 300, height: 300, marginTop: 50}}
+                        style={{width: 300, height: 300, marginTop: 30}}
                         source={require('./img/logo.png')}
                     />
                 </View>
@@ -115,20 +163,22 @@ var HomeScreen = React.createClass({
                 <Text style={styles.instructions}>
                     _______________
                 </Text>
-                <Text style={styles.instructions}>
-                    Click on the button below{'\n'}
-                    to start the tour.
-                </Text>
-                <Button
-                    onPress={() => {                                // onPress button Start
-                        this.state.isConnected ?                    // Is internet connected?
-                        this.navigate('Maps'):                      // If Yes, Navigate to Maps
-                        this.ifNotConnectedToWifi()                 // IF Not, call function ifNotConnectedToWifi
-                    }}
-                    title="Start"
-                    color="#E73C2A"
-                    accessibilityLabel="Start"
-                />
+
+                <Form ref="form">
+                    <View>
+                        <Text style={styles.instructions}>SchoolClash Code:</Text>
+                        <TextInput type="TextInput" name="code" />
+                        <Button
+                            onPress={() => {                                // onPress button Start
+                                submit(this.refs.form.getValues(), this.state.isConnected, this.props.navigator)
+                            }}
+                            title="Start"
+                            color="#E73C2A"
+                            accessibilityLabel="Start"
+                        />
+                    </View>
+                </Form>
+
           </View>
         );
     },
@@ -153,7 +203,6 @@ const styles = StyleSheet.create({      //Styling (Camelcase)
     fontSize: 18,
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 20,
     color: 'white',
   },
 
