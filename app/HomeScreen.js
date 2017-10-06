@@ -16,7 +16,9 @@ import {
     Vibration,
     TouchableHighlight,
     ToolbarAndroid,
-    TextInput
+    TextInput,
+    KeyboardAvoidingView,
+    ScrollView
 } from 'react-native';       //Import components for this file.
 
 var HomeScreen = React.createClass({
@@ -125,7 +127,7 @@ var HomeScreen = React.createClass({
                         var id = "Maps";
                         navigator.replace({id,});
                       } else if(answer[12] == "false") {
-                       alert("foutieve gebruikersnaam/wachtwoord");
+                       alert("De code komt niet overeen");
                       } else {
                         alert(http.responseText);
                       }
@@ -138,48 +140,51 @@ var HomeScreen = React.createClass({
           }
         }
         return(
-            <View style={styles.container}>
-                    <TouchableHighlight style={styles.locationSettings} onPress={() => { this.navigateSettings('Settings') }}>
-                        <Image
-                            style={styles.settingIcon}
-                            source={require('./img/settings.png')}      //Settings Icon, onPress, navigate to settings page
+            <View style={{flex: 1, backgroundColor: '#459695'}}>
+             <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={-250} style={{flexGrow: 1}}>
+                <ScrollView>
+                    <View style={styles.container}>
+                            <TouchableHighlight style={styles.locationSettings} onPress={() => { this.navigateSettings('Settings') }}>
+                                <Image
+                                    style={styles.settingIcon}
+                                    source={require('./img/settings.png')}      //Settings Icon, onPress, navigate to settings page
+                                />
+                            </TouchableHighlight>
+                        <TaskDescriptionAndroid backgroundColor="#2f6564" label="SchoolClash" />
+                        <StatusBar
+                            backgroundColor="#2f6564"
+                            barStyle="light-content"        //Bar on top of your mobile (The bar where you can find your battery percentage for example)
                         />
-                    </TouchableHighlight>
-                <TaskDescriptionAndroid backgroundColor="#2f6564" label="SchoolClash" />
-                <StatusBar
-                    backgroundColor="#2f6564"
-                    barStyle="light-content"        //Bar on top of your mobile (The bar where you can find your battery percentage for example)
-                />
-                <View>
-                    <Image
-                        style={{width: 300, height: 300, marginTop: 30}}
-                        source={require('./img/logo.png')}
-                    />
-                </View>
-                <Text style={styles.welcome}>
-                    WELCOME TO{'\n'}
-                    SCHOOLCLASH
-                </Text>
-                <Text style={styles.instructions}>
-                    _______________
-                </Text>
+                        <View>
+                            <Image
+                                style={{width: 300, height: 300, marginTop: 30}}
+                                source={require('./img/logo.png')}
+                            />
+                        </View>
+                        <Text style={styles.welcome}>
+                            WELCOME TO{'\n'}
+                            SCHOOLCLASH
+                        </Text>
 
-                <Form ref="form">
-                    <View>
-                        <Text style={styles.instructions}>SchoolClash Code:</Text>
-                        <TextInput type="TextInput" name="code" />
-                        <Button
-                            onPress={() => {                                // onPress button Start
-                                submit(this.refs.form.getValues(), this.state.isConnected, this.props.navigator)
-                            }}
-                            title="Start"
-                            color="#E73C2A"
-                            accessibilityLabel="Start"
-                        />
+
+                        <Form ref="form">
+                            <View>
+                                <Text style={styles.instructions}>SchoolClash Code:</Text>
+                                <TextInput type="TextInput" name="code" />
+                                <Button
+                                    onPress={() => {                                // onPress button Start
+                                        submit(this.refs.form.getValues(), this.state.isConnected, this.props.navigator)
+                                    }}
+                                    title="Start"
+                                    color="#E73C2A"
+                                    accessibilityLabel="Start"
+                                />
+                            </View>
+                        </Form>
                     </View>
-                </Form>
-
-          </View>
+                </ScrollView>
+             </KeyboardAvoidingView>
+             </View>
         );
     },
 });
