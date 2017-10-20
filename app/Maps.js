@@ -355,7 +355,7 @@ var CustomMap = React.createClass({
                 <Image source={require('./img/stock.png')} style={{width: 300, height: 200}} />
 
 
-                <Text style={styles.question}>{questions[this.state.locationActiveQuestion] != null? questions[this.state.locationActiveQuestion].text: "Undefined"}</Text>
+                <Text style={styles.question}>{this.state.activeQuestions[this.state.locationActiveQuestion] != null? this.state.activeQuestions[this.state.locationActiveQuestion].text: "Undefined"}</Text>
                 {console.log(this.state.activeQuestions[0])}
                 {this.state.activeQuestions[0] != null? this.answerType(this.state.activeQuestions[this.state.locationActiveQuestion].type): <Text>Undefined</Text>}
 
